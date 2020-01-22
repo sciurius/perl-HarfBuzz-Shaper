@@ -25,8 +25,8 @@ This module requires the HarfBuzz library to be installed on the system.
 
 To build, the HarfBuzz development library and associated include
 files are required, in particular include file
-C</usr/include/harfbuzz/hb.h> and libharfbuzz (linked using
-C<-lharfbuzz>.
+/usr/include/harfbuzz/hb.h and libharfbuzz (linked using
+-lharfbuzz.
 
 SUPPORT AND DOCUMENTATION
 
@@ -40,7 +40,7 @@ You can find documentation for this module with the perldoc command.
 Please report any bugs or feature requests using the issue tracker on
 GitHub.
 
-HarfBuzz website and documentation: L<https://harfbuzz.github.io/index.html>.
+HarfBuzz website and documentation: https://harfbuzz.github.io/index.html.
 
 COPYRIGHT AND LICENCE
 

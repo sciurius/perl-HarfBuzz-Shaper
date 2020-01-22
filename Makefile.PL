@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use ExtUtils::MakeMaker;
 
-my $master = 'lib/HarfBuzz/Shaper/Version.pm';
+my $master = 'lib/HarfBuzz/Shaper.pm';
 my $version = MM->parse_version($master);
 
 WriteMakefile(

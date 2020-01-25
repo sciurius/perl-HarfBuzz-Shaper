@@ -3,6 +3,19 @@
 use strict;
 use warnings;
 use ExtUtils::MakeMaker;
+use lib 'inc';
+use Devel::CheckLib;
+
+unless ( check_lib( lib => "harfbuzz" )
+	 and
+	 ( check_lib( header => "hb.h" )
+	   or
+	   check_lib( header => "harfbuzz/hb.h" )
+	 )
+       ) {
+    warn("HarfBuzz::Shaper needs the harfbuzz library. Please install it first.\n");
+    exit(0);
+}
 
 my $master = 'lib/HarfBuzz/Shaper.pm';
 my $version = MM->parse_version($master);
@@ -44,7 +57,7 @@ WriteMakefile(
 
      no_index => {
          directory => [
-	    "t",
+		       "inc", "t",
 	 ],
      },
  }

@@ -9,3 +9,4 @@ t/20_shaper.t
 t/LiberationSans.ttf
 t/Lohit-Devanagari.ttf
 lib/HarfBuzz/Shaper.pm
+inc/Devel/CheckLib.pm

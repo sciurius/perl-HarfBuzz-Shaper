@@ -58,7 +58,8 @@ my $result = [
     name => 'Euro',
   },
   {
-    ax => '10.008',
+#    ax => '10.008',		# harfbuzz 1.8.7
+    ax => '9.972',		# harfbuzz 2.6.4
     ay => 0,
     dx => 0,
     dy => 0,
@@ -67,4 +68,33 @@ my $result = [
   },
 ];
 
-is_deeply( $info, $result, "content" );
+ok(compare( $info, $result ), "content" );
+
+sub compare {
+    my ( $soll, $ist ) = @_;
+    unless ( @$ist == @$soll ) {
+	diag( scalar(@$ist) . " elements, must be " . scalar(@$soll) );
+	return;
+    }
+
+    for ( 0 .. @$ist-1 ) {
+	my $i = $ist->[$_];
+	my $j = $soll->[$_];
+	unless ( $i->{g} == $j->{g} ) {
+	    diag( "CId $i->{g} must be $j->{g}" );
+	    return;
+	}
+	unless ( $i->{name} eq $j->{name} ) {
+	    diag( "Name $i->{name} must be $j->{name}" );
+	    return;
+	}
+	for ( qw( ax ay dx dy ) ) {
+	    next if $i->{$_} == $j->{$_};
+	    unless ( abs( $i->{$_} - $j->{$_} ) <= abs($j->{$_} / 100) ) {
+		diag( "$_ $i->{$_} must be $j->{$_}" );
+		return;
+	    }
+	}
+    }
+    return 1;
+}

@@ -15,6 +15,16 @@
 MODULE = HarfBuzz::Shaper		PACKAGE = HarfBuzz::Shaper		
 PROTOTYPES: ENABLE
 
+SV *
+hb_version_string()
+INIT:
+  const char *p;
+CODE:
+  p = hb_version_string();
+  RETVAL = newSVpv(p, strlen(p));
+OUTPUT:
+    RETVAL
+
 void *
 hb_buffer_create()
   CODE:

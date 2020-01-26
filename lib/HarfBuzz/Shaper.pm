@@ -8,7 +8,7 @@ use warnings;
 use Carp;
 use Encode;
 
-our $VERSION = '0.012';
+our $VERSION = '0.014';
 
 require XSLoader;
 XSLoader::load('HarfBuzz::Shaper', $VERSION);
@@ -81,6 +81,7 @@ sub new {
     $opts //= {};
 
     my $self = bless {} => $pkg;
+    $self->{harfbuzz} = hb_version_string();
     $self->{buf} = hb_buffer_create();
 
     if ( $opts->{font} ) {

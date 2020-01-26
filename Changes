@@ -1,5 +1,11 @@
 Revision history for HarfBuzz::Shaper.
 
+0.014 Sun Jan 26 21:37:34
+
+    - Compare metrics with some fuzz to cope with differences between
+      harfbuzz versions.
+    - Add hb_version_string() method.
+
 0.013 Sun Jan 26 19:38:03 2020
 
     - Fix build on FreeBSD.

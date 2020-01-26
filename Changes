@@ -1,5 +1,13 @@
 Revision history for HarfBuzz::Shaper.
 
+0.012 Sun Jan 26 12:25:06 2020
+
+    - Fix build on FreeBSD.
+
+0.011 Sat Jan 25 21:11:34 2020
+
+    - First CPAN release.
+
 0.01  Wed Jan 22 21:11:34 2020
 
     - Initial version.

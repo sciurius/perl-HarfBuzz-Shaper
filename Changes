@@ -1,5 +1,10 @@
 Revision history for HarfBuzz::Shaper.
 
+0.015 Sun Jan 26 22:22:22
+
+    - Modify include paths to work on more systems.
+    - Now also builds with Strawberry Perl 5.30 on Windows.
+
 0.014 Sun Jan 26 21:37:34
 
     - Compare metrics with some fuzz to cope with differences between

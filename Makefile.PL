@@ -6,12 +6,8 @@ use ExtUtils::MakeMaker;
 use lib 'inc';
 use Devel::CheckLib;
 
-unless ( check_lib( lib => "harfbuzz" )
-	 and
-	 ( check_lib( header => "hb.h" )
-	   or
-	   check_lib( header => "harfbuzz/hb.h" )
-	 )
+unless ( check_lib( lib => "harfbuzz",
+		    header => "harfbuzz/hb.h" )
        ) {
     warn("HarfBuzz::Shaper needs the harfbuzz library. Please install it first.\n");
     exit(0);
@@ -28,7 +24,7 @@ WriteMakefile(
  LICENSE             => 'perl_5',
  PL_FILES            => {},
  LIBS                => ['-lharfbuzz'],
- INC                 => '-I/usr/include/harfbuzz -I/usr/local/include/harfbuzz',
+ INC                 => '-I/usr/include -I/usr/local/include',
  MIN_PERL_VERSION    => '5.010001',
  PREREQ_PM => {
      'ExtUtils::MakeMaker' => 6.46, # for META_MERGE, LICENSE

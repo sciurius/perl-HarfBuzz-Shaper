@@ -9,8 +9,8 @@
 #include "stdint.h"
 #include <string.h>
 #include <math.h>
-#include <hb.h>
-#include <hb-ot.h>
+#include <harfbuzz/hb.h>
+#include <harfbuzz/hb-ot.h>
 
 MODULE = HarfBuzz::Shaper		PACKAGE = HarfBuzz::Shaper		
 PROTOTYPES: ENABLE

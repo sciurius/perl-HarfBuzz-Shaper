@@ -1,5 +1,9 @@
 Revision history for HarfBuzz::Shaper.
 
+0.013 Sun Jan 26 19:38:03 2020
+
+    - Fix build on FreeBSD.
+
 0.012 Sun Jan 26 12:25:06 2020
 
     - Fix build on FreeBSD.

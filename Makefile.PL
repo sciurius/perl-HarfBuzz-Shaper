@@ -28,7 +28,7 @@ WriteMakefile(
  LICENSE             => 'perl_5',
  PL_FILES            => {},
  LIBS                => ['-lharfbuzz'],
- INC                 => '-I/usr/include/harfbuzz',
+ INC                 => '-I/usr/include/harfbuzz -I/usr/local/include/harfbuzz',
  MIN_PERL_VERSION    => '5.010001',
  PREREQ_PM => {
      'ExtUtils::MakeMaker' => 6.46, # for META_MERGE, LICENSE

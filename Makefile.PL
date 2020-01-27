@@ -7,9 +7,15 @@ use lib 'inc';
 use Devel::CheckLib;
 
 unless ( check_lib( lib => "harfbuzz",
-		    header => "harfbuzz/hb.h" )
+		    header => "harfbuzz/hb.h",
+		    debug => 1,
+		    function => <<EOF )
+/* Need at least 1.7.7 */
+hb_blob_create_from_file("");
+return 0;
+EOF
        ) {
-    warn("HarfBuzz::Shaper needs the harfbuzz library. Please install it first.\n");
+    warn("HarfBuzz::Shaper needs the harfbuzz library, version 1.7.7 or later.\nPlease install it first.\n");
     exit(0);
 }
 
@@ -24,7 +30,7 @@ WriteMakefile(
  LICENSE             => 'perl_5',
  PL_FILES            => {},
  LIBS                => ['-lharfbuzz'],
- INC                 => '-I/usr/include -I/usr/local/include',
+ INC                 => '',
  MIN_PERL_VERSION    => '5.010001',
  PREREQ_PM => {
      'ExtUtils::MakeMaker' => 6.46, # for META_MERGE, LICENSE

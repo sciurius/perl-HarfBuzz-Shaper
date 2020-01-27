@@ -21,7 +21,8 @@ To install this module type the following:
 
 DEPENDENCIES
 
-This module requires the HarfBuzz library to be installed on the system.
+This module requires the HarfBuzz library, version 1.6.0 or later, to
+be installed on the system.
 
 To build, the HarfBuzz development library and associated include
 files are required, in particular include file

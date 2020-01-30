@@ -1,5 +1,10 @@
 Revision history for HarfBuzz::Shaper.
 
+0.018
+
+    - Add harfbuzz source so we can build the lib ourselves if needed.
+    - Upgrade to upstream harfbuzz 2.6.4.
+
 0.017
 
     - Add INSTALL document.

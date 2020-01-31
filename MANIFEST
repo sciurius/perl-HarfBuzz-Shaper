@@ -7,6 +7,7 @@ Shaper.xs
 t/00_load.t
 t/10_basic.t
 t/20_shaper.t
+t/99_showlog.t
 t/LiberationSans.ttf
 t/Lohit-Devanagari.ttf
 lib/HarfBuzz/Shaper.pm

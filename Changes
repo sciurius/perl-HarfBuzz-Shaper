@@ -1,5 +1,15 @@
 Revision history for HarfBuzz::Shaper.
 
+0.018.2
+
+    - Small build fixes.
+    - Move harfbuzz sources to a separate directory to avoid inclusion
+      of the wrong include files when using platform library.
+    
+0.018.1
+
+    - Small build fixes.
+    
 0.018
 
     - Add harfbuzz source so we can build the lib ourselves if needed.

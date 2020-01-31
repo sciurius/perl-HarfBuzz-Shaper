@@ -17,7 +17,7 @@ my %args = (
  LICENSE             => 'perl_5',
  PL_FILES            => {},
  LIBS                => [ '-lharfbuzz' ],
- INC                 => '',
+ INC                 => '-I.',
  MIN_PERL_VERSION    => '5.010001',
  PREREQ_PM => {
      'ExtUtils::MakeMaker' => 6.46, # for META_MERGE, LICENSE
@@ -53,7 +53,7 @@ my %args = (
 );
 
 my $hb_include;
-my $hb_src = "harfbuzz/harfbuzz.cc";
+my $hb_src = "hb_src/harfbuzz/harfbuzz.cc";
 
 if ( check_lib( lib      => "harfbuzz",
 		header   => "harfbuzz/hb.h",
@@ -70,7 +70,7 @@ elsif ( -s $hb_src ) {
     warn("Including harfbuzz library\n");
     $args{MYEXTLIB} = 'harfbuzz.o';
     $args{LIBS}     = [ '-lstdc++' ];
-    $args{INC}      = '-I.';
+    $args{INC}      = '-Ihb_src',
 }
 else {
     warn("HarfBuzz::Shaper needs the harfbuzz library, version 1.7.7 or later.\n",
@@ -83,8 +83,9 @@ WriteMakefile(%args);
 sub MY::postamble {
     return unless $hb_include;
     return <<'EOF';
-$(MYEXTLIB) : harfbuzz/harfbuzz.cc
-	$(CXX) -c -o $@ -DHB_NO_MT -fPIC $(CCFLAGS) $<
+$(MYEXTLIB) : hb_src/harfbuzz/harfbuzz.cc
+	$(CXX) -c -o $@ -DHB_NO_MT $(CCCDLFLAGS) $(CCFLAGS) $<
 
 EOF
 }
+

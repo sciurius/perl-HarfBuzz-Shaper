@@ -136,7 +136,7 @@ CODE:
   /* Do we have features? */
   if ( (SvROK(feat))
        && (SvTYPE(SvRV(feat)) == SVt_PVAV)
-       && ((n = av_top_index((AV *)SvRV(feat))) >= 0)) {
+       && ((n = av_len((AV *)SvRV(feat))) >= 0)) {
 
     n++;	/* top index -> length */
     features = (hb_feature_t*) calloc( sizeof(hb_feature_t), n );

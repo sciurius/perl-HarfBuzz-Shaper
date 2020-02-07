@@ -1,5 +1,9 @@
 Revision history for HarfBuzz::Shaper.
 
+0.021
+
+    - Simplify XS by using typemaps.
+
 0.020 2020-02-07
 
     - Solve some memory corruption on Windows.

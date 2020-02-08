@@ -58,6 +58,33 @@ hb_font_set_scale( hb_font_t *font, int xscale, int yscale)
 void
 hb_font_set_ptem( hb_font_t *font, float pt )
 
+int
+hb_buffer_set_language( hb_buffer_t *buf, bytestring_t s, size_t length(s) )
+PREINIT:
+  hb_language_t lang;
+CODE:
+  lang = hb_language_from_string(s, XSauto_length_of_s);
+  if ( lang ) {
+    hb_buffer_set_language( buf, lang );
+    RETVAL = 1;
+  }
+  else
+    XSRETURN_UNDEF;
+OUTPUT:
+  RETVAL
+
+SV *
+hb_buffer_get_language( hb_buffer_t *buf )
+PREINIT:
+  hb_language_t lang;
+  const char *s;
+CODE:
+  lang = hb_buffer_get_language(buf);
+  s = hb_language_to_string(lang);
+  RETVAL = newSVpvn(s, strlen(s));
+OUTPUT:
+  RETVAL
+
 void
 hb_buffer_guess_segment_properties( hb_buffer_t *buf )
 
@@ -85,7 +112,7 @@ CODE:
   hb_shape( font, buf, NULL, 0 );
 
 SV *
-_hb_shaper( hb_font_t *font, hb_buffer_t *buf, SV* feat )
+hb_shaper( hb_font_t *font, hb_buffer_t *buf, SV* feat )
 INIT:
   int n;
   int i;
@@ -132,7 +159,7 @@ CODE:
     hv_store(rh, "dy",   2, newSViv(pos[i].y_offset),    0);
     hv_store(rh, "g",    1, newSViv(gid),                0);
     hb_font_get_glyph_name(font, gid,
-			   glyphname, sizeof(glyphname));	
+			   glyphname, sizeof(glyphname));
     hv_store(rh, "name", 4,
 		 newSVpvn(glyphname, strlen(glyphname)),  0);
     av_push(results, newRV_inc((SV *)rh));

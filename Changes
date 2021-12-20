@@ -2,7 +2,7 @@ Revision history for HarfBuzz::Shaper.
 
 0.025
 
-    - Add extents method.
+    - Add get_extents method.
 
 0.024 2021-04-12
 

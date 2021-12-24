@@ -482,12 +482,11 @@ sub get_extents {
     croak("HarfBuzz get_extents() without shaped buffer")
       unless $self->{shaped};
 
-    my $scale = 1000;
+    my $scale = $self->{size} / 1000;
     my $info = hb_buffer_get_extents( $self->{font}, $self->{buffer} );
 
     foreach my $i ( @$info ) {
-	$i->{$_} *= $self->{size} / $scale
-	  for qw( x_bearing y_bearing width height );
+	$i->{$_} *= $scale for qw( x_bearing y_bearing width height );
     }
 
     return $info;

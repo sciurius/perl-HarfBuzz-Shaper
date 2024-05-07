@@ -1,5 +1,4 @@
-Introduction
-------------
+# Introduction
 
 HarfBuzz::Shaper is a Perl module that interfaces with the native
 harfbuzz library. It uses the XS facility to bridge between Perl and
@@ -8,8 +7,7 @@ native C code.
 To build this module, you must therefore have a C-compiler and the
 harfbuzz libraries installed.
 
-Linux
------
+# Linux
 
 For best results install the following packages:
 
@@ -24,8 +22,7 @@ HarfBuzz::Shaper will build its own version of the harfbuzz library.
 
 Note that this requires a suitable C++-compiler, e.g. GNU g++.
 
-Microsoft Windows
------------------
+# Microsoft Windows
 
 The preferred Perl software for MSWindows is Strawberry Perl. It can
 be downloaded from https://strawberryperl.com. It includes C-compiler

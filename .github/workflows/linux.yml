@@ -1,0 +1,32 @@
+name: CI for Ubuntu
+on:
+  push:
+    branches:
+      - macosbuild
+
+jobs:
+
+  linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: perl -V
+        run: perl -V
+      - name: Install cpanm
+        run: |
+          sudo apt-get update
+          sudo apt-get install cpanminus
+      - name: Install HarfBuzz
+        run: |
+          sudo apt-get install libharfbuzz-dev
+          pkg-config --libs harfbuzz
+      - name: Install Dependencies
+        run: cpanm --installdeps --notest .  || cat /Users/runner/.cpanm/build.log
+      - name: Build
+        run: |
+          perl Makefile.PL
+          make
+      - name: Run Tests
+        run: make test

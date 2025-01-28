@@ -5,7 +5,13 @@ on: push
 jobs:
 
   linux:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ubuntu-latest
+        inchs: [ 0, 1 ]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Check out repository code
@@ -23,6 +29,8 @@ jobs:
       - name: Install Dependencies
         run: cpanm --installdeps --notest .  || cat /Users/runner/.cpanm/build.log
       - name: Build
+        env:
+          INCHS: ${{ matrix.inchs }}
         run: |
           perl Makefile.PL
           make

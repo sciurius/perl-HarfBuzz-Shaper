@@ -1,8 +1,6 @@
 name: CI for Ubuntu
-on:
-  push:
-    branches:
-      - macosbuild
+
+on: push
 
 jobs:
 

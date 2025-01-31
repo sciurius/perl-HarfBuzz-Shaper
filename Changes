@@ -1,5 +1,13 @@
 Revision history for HarfBuzz::Shaper.
 
+0.031 2025-01-31
+
+   - Some more fixes in harfbuzz lib detection.
+
+0.030 2025-01-30
+
+   - Some more fixes in harfbuzz lib detection.
+
 0.029 2025-01-29
 
    - Some more fixes in harfbuzz lib detection.

@@ -8,20 +8,15 @@ jobs:
     strategy:
       fail-fast: false
 
-    runs-on: windows-2025
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v4
       - uses: shogo82148/actions-setup-perl@v1
         with:
           distribution: strawberry
-      - name: Check out repository code
-        uses: actions/checkout@v4
+      - run: perl -V
       - name: Install Dependencies
-        run: cpanm --installdeps --notest .  || cat /Users/runner/.cpanm/build.log
-      - name: Build
-        run: |
-          perl Makefile.PL
-          gmake
+        run: cpanm --installdeps .
       - name: Run Tests
-        run: gmake test
+        run: prove -lv t

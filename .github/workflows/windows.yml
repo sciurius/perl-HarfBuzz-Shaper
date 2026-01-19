@@ -1,35 +1,37 @@
-name: CI for Ubuntu
+name: CI for Windows
 
-on: xxpush
+on: push
 
 jobs:
 
-  linux:
+  msw:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest ]
+        os:
+          - windows-latest
 
     runs-on: ${{ matrix.os }}
 
     steps:
+      - uses: actions/checkout@v4
+      - uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: "5.38"
+          distribution: strawberry
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: perl -V
         run: perl -V
-      - name: Install cpanm
-        run: |
-          sudo apt-get update
-          sudo apt-get install cpanminus
       - name: Install HarfBuzz
         run: |
-          sudo apt-get install libharfbuzz-dev
+          pkg-config --path harfbuzz
           pkg-config --libs harfbuzz
       - name: Install Dependencies
         run: cpanm --installdeps --notest .  || cat /Users/runner/.cpanm/build.log
       - name: Build
         run: |
           perl Makefile.PL
-          make
+          gmake
       - name: Run Tests
-        run: make test
+        run: gmake test

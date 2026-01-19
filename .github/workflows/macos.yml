@@ -1,6 +1,6 @@
 name: CI for MacOS
 
-on: push
+on: xxpush
 
 jobs:
 

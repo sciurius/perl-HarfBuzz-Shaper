@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout
-        run: actions/checkout@v4
+        uses: actions/checkout@v4
       - name: Install Strawberry Perl
         uses: shogo82148/actions-setup-perl@v1
       - run: perl -V

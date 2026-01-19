@@ -20,6 +20,7 @@ jobs:
       - run: perl -V
       - name: Install HarfBuzz
         run: |
+          sudo apt-get update
           sudo apt-get install libharfbuzz-dev
           pkg-config --libs harfbuzz
       - name: Install Dependencies

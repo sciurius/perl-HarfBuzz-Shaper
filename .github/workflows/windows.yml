@@ -7,26 +7,16 @@ jobs:
   msw:
     strategy:
       fail-fast: false
-      matrix:
-        os:
-          - windows-2025
 
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-2025
 
     steps:
       - uses: actions/checkout@v4
       - uses: shogo82148/actions-setup-perl@v1
         with:
-          perl-version: "5.40"
           distribution: strawberry
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: perl -V
-        run: perl -V
-      - name: Install HarfBuzz
-        run: |
-          pkg-config --path harfbuzz
-          pkg-config --libs harfbuzz
       - name: Install Dependencies
         run: cpanm --installdeps --notest .  || cat /Users/runner/.cpanm/build.log
       - name: Build

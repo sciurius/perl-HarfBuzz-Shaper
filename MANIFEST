@@ -1,10 +1,10 @@
 Changes
-INSTALL.md
-Makefile.PL
 MANIFEST
+Makefile.PL
 README.md
 Shaper.xs
-typemap
+inc/PkgConfig.pm
+lib/HarfBuzz/Shaper.pm
 t/00_load.t
 t/10_basic.t
 t/20_shaper.t
@@ -12,7 +12,4 @@ t/30_kern.t
 t/31_extents.t
 t/Lohit-Devanagari.ttf
 t/NimbusRoman-Regular.otf
-lib/HarfBuzz/Shaper.pm
-inc/Devel/CheckLib.pm
-inc/ExtUtils/CppGuess.pm
-hb_src.tar.gz
+typemap

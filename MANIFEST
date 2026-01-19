@@ -1,6 +1,8 @@
 Changes
 MANIFEST
 Makefile.PL
+MYMETA.json
+MYMETA.yml
 README.md
 Shaper.xs
 inc/PkgConfig.pm

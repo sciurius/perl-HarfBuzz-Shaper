@@ -5,8 +5,8 @@
 # Author          : Johan Vromans
 # Created On      : Sat Jan 17 21:40:08 2026
 # Last Modified By: Johan Vromans
-# Last Modified On: Mon Jan 19 19:35:18 2026
-# Update Count    : 25
+# Last Modified On: Mon Jan 19 20:57:19 2026
+# Update Count    : 28
 # Status          : Unknown, Use with caution!
 
 ################ Common stuff ################
@@ -99,7 +99,15 @@ my %args = (
 
 ################ The Process ################
 
-my $ok = PkgConfig->find("harfbuzz");
+my %po;
+if ( $^O =~ /darwin/ ) {
+    for ( qw( /opt/homebrew/lib/pkgconfig/ ) ) {
+	next unless -d $_;
+	push( @{$po{search_path}}, $_ );
+    }
+}
+
+my $ok = PkgConfig->find( "harfbuzz", %po );
 if ( $ok->errmsg ) {
     die($ok->errmsg);
 }

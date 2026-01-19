@@ -18,5 +18,9 @@ jobs:
       - run: perl -V
       - name: Install Dependencies
         run: cpanm --installdeps .
+      - name: Build
+        run: |
+          perl Makefile.PL
+          make
       - name: Run Tests
         run: prove -lv t

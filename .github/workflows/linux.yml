@@ -20,7 +20,7 @@ jobs:
           sudo apt-get install libharfbuzz-dev
           pkg-config --libs harfbuzz
       - name: Install Dependencies
-        run: cpanm --installdeps --notest .
+        run: cpanm --installdeps --notest . || cat /Users/runner/.cpanm/build.log
       - name: Build
         run: |
           perl Makefile.PL

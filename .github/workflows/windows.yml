@@ -16,7 +16,7 @@ jobs:
           distribution: strawberry
       - run: perl -V
       - name: Install Dependencies
-        run: cpanm --installdeps .
+        run: cpanm --installdeps . || cat /Users/runner/.cpanm/build.log
       - name: Build
         run: |
           perl Makefile.PL

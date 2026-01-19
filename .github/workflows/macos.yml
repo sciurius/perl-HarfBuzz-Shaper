@@ -11,7 +11,6 @@ jobs:
         os:
           - macos-15-intel
           - macos-latest
-        inchs: [ 0, 1 ]
 
     runs-on: ${{ matrix.os }}
 
@@ -25,12 +24,11 @@ jobs:
       - name: Install HarfBuzz
         run: |
           brew install harfbuzz
+          pkg-config --path harfbuzz
           pkg-config --libs harfbuzz
       - name: Install Dependencies
         run: cpanm --installdeps --notest .  || cat /Users/runner/.cpanm/build.log
       - name: Build
-        env:
-          INCHS: ${{ matrix.inchs }}
         run: |
           perl Makefile.PL
           make

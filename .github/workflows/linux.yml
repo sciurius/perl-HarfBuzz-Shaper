@@ -1,6 +1,6 @@
 name: CI for Ubuntu
 
-on: xxpush
+on: push
 
 jobs:
 
@@ -13,20 +13,14 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - name: perl -V
-        run: perl -V
-      - name: Install cpanm
-        run: |
-          sudo apt-get update
-          sudo apt-get install cpanminus
+      - uses: shogo82148/actions-setup-perl@v1
+      - run: perl -V
       - name: Install HarfBuzz
         run: |
           sudo apt-get install libharfbuzz-dev
           pkg-config --libs harfbuzz
       - name: Install Dependencies
-        run: cpanm --installdeps --notest .  || cat /Users/runner/.cpanm/build.log
+        run: cpanm --installdeps --notest .
       - name: Build
         run: |
           perl Makefile.PL

@@ -13,7 +13,10 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: shogo82148/actions-setup-perl@v1
+      - name: Checkout
+        run: actions/checkout@v4
+      - name: Install Perl
+        uses: shogo82148/actions-setup-perl@v1
       - run: perl -V
       - name: Install HarfBuzz
         run: |

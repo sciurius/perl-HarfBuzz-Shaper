@@ -1,0 +1,53 @@
+name: CI for HarfBuzz::Shaper
+
+on: push
+
+jobs:
+
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform_name: linux
+            os: ubuntu-latest
+            make: make
+          - platform_name: macos-arm
+            os: macos-latest
+            make: make
+          - platform_name: macos-intel
+            os: macos-15-intel
+            make: make
+          - platform_name: windows
+            os: windows-latest
+            make: gmake
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Perl
+        uses: shogo82148/actions-setup-perl@v1
+        with:
+          distribution: strawberry
+      - run: perl -V
+
+      - if: ${{ contains(matrix.os,'ubuntu') }}
+        name: Install HarfBuzz
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libharfbuzz-dev
+
+      - name: Install Dependencies
+        run: cpanm --installdeps --notest .
+
+      - name: Build Harfbuzz::Shaper
+        run: |
+          perl Makefile.PL
+          ${{ matrix.make }}
+
+      - name: Run Tests
+        run: ${{ matrix.make }} test

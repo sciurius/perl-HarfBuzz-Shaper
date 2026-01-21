@@ -8,19 +8,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - platform_name: linux
-            os: ubuntu-latest
-            make: make
-          - platform_name: macos-arm
-            os: macos-latest
-            make: make
-          - platform_name: macos-intel
-            os: macos-15-intel
-            make: make
-          - platform_name: windows
-            os: windows-latest
-            make: gmake
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - macos-15-intel
+          - windows-latest
 
     runs-on: ${{ matrix.os }}
 
@@ -44,10 +36,5 @@ jobs:
       - name: Install Dependencies
         run: cpanm --installdeps --notest .
 
-      - name: Build Harfbuzz::Shaper
-        run: |
-          perl Makefile.PL
-          ${{ matrix.make }}
-
-      - name: Run Tests
-        run: ${{ matrix.make }} test
+      - name: Build, test and install Harfbuzz::Shaper
+        run: cpanm .
